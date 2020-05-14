@@ -1,0 +1,7 @@
+{
+  "name": "ionic_randomeater",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

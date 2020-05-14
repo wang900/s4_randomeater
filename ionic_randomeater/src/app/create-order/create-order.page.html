@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Order</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="presentFoodModal()">
+          <ion-card-header>
+            <ion-card-subtitle>Random</ion-card-subtitle>
+            <ion-card-title>Food</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            Have your belly filled with the best of the best.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="presentDrinkModal()">
+          <ion-card-header>
+            <ion-card-subtitle>Random</ion-card-subtitle>
+            <ion-card-title>Drink</ion-card-title>
+          </ion-card-header>
+          
+          <ion-card-content>
+            Have a refreshing feeling with these drinks.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
