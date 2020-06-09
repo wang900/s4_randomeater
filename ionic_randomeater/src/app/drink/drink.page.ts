@@ -1,77 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController, LoadingController } from '@ionic/angular';
-import { AllergyService } from '../services/allergy.service';
+import { Component, Input } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 import { Allergy } from '../models/allergy';
 import { Drink } from '../models/drink';
+import { CartService } from '../services/cart.service';
+import { Area } from '../models/area';
 
 @Component({
   selector: 'app-drink',
   templateUrl: './drink.page.html',
   styleUrls: ['./drink.page.scss'],
 })
-export class DrinkPage implements OnInit {
+export class DrinkPage {
+  @Input() allergies: Allergy[] = [];
+  @Input() areas: Area[] = [];
 
-  modalCtrl: ModalController
-  allergies: Allergy[] = [];
-  loadingController: LoadingController;
-  drinks : Drink[] = []
-
-  selectedAllergies: string[] = [];
-  selectedAreas: string[] = [];
+  selectedAllergies: number[] = [];
+  selectedAreas: number[] = [];
   selectedSize: number;
-  selectedAmount: number;
+  selectedAmount: number = 1;
 
-  constructor(modalCtrl: ModalController,
-    private allergyService: AllergyService,
-    loadingController: LoadingController) {
-    this.modalCtrl = modalCtrl;
-    this.loadingController = loadingController;
+  constructor(private modalCtrl: ModalController,
+    private cartService: CartService,
+    public navParams: NavParams) {
   }
 
-  ngOnInit() {
-    this.getAllergies();
-  }
-
-  optionsAllergies(allergies : string[]) {
-    this.selectedAllergies = allergies;
-  }
-
-
-  optionsAreas(areas : string[]) {
-    this.selectedAreas = areas;
-  }
-
-  optionsSize(size : number) {
-    this.selectedSize = size;
+  randomize() {
+    let randomNumber : number =  Math.floor(Math.random() * this.areas.length);
+    this.selectedAreas.push(this.areas[randomNumber].id)
   }
 
   async dismissModal() {
-    await this.modalCtrl.dismiss(null);
+    await this.modalCtrl.dismiss();
   }
 
-  async save(drink : Drink){
-    await this.modalCtrl.dismiss(drink);
-  }
-
-  async getAllergies(): Promise<void> {
-    const loading = await this.loadingController.create({
-      message: "Please wait...",
-    });
-    await loading.present();
-    this.allergyService.getAllergies()
-      .subscribe(allergies => this.allergies = allergies);
-    await loading.dismiss();
+  async save(drink: Drink) {
+    this.cartService.addDrink(drink);
+    this.dismissModal();
   }
 
   async orderDrink() {
-    let drink = new Drink()
-    
-    drink.allergies = this.selectedAllergies;
+    let drink = new Drink();
+    if (this.selectedAllergies != null) {
+      drink.allergies = this.selectedAllergies;
+    }
     drink.areas = this.selectedAreas;
     drink.size = this.selectedSize;
     drink.amount = this.selectedAmount;
 
-    console.log(drink.areas[0] + drink.allergies[0])
-    //this.save(drink);
+    this.save(drink);
   }
 }

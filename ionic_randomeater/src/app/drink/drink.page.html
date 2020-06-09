@@ -11,58 +11,51 @@
   <ion-grid>
     <ion-row class="ion-align-items-center">
       <ion-col size="5">
-        <ion-button color="danger">Randomize</ion-button>
+        <ion-button (click)="randomize()" color="danger">Randomize</ion-button>
       </ion-col>
     </ion-row>
-<ion-row>
-  <ion-col>
-    <ion-item>
-      <ion-label>Areas</ion-label>
-      <ion-select  [(ngModel)]="area" (ionChange)="optionsAreas(area);" multiple="true" cancelText="Nah" okText="Okay!">
-        <ion-select-option value="bacon">Bacon</ion-select-option>
-        <ion-select-option value="olives">Black Olives</ion-select-option>
-        <ion-select-option value="xcheese">Extra Cheese</ion-select-option>
-        <ion-select-option value="peppers">Green Peppers</ion-select-option>
-        <ion-select-option value="mushrooms">Mushrooms</ion-select-option>
-        <ion-select-option value="onions">Onions</ion-select-option>
-        <ion-select-option value="pepperoni">Pepperoni</ion-select-option>
-        <ion-select-option value="pineapple">Pineapple</ion-select-option>
-        <ion-select-option value="sausage">Sausage</ion-select-option>
-        <ion-select-option value="Spinach">Spinach</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col>
-    <ion-item>
-      <!-- TODO: fix giving allergies to drink -->
-      <ion-label>Allergies</ion-label>
-      <ion-select  [(ngModel)]="allergies" (ionChange)="optionsAreas($event);"multiple="true" cancelText="Nah" okText="Okay!">
-        <ion-select-option *ngFor="let allergy of allergies" value="allergy.name">{{allergy.name}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-col>
-</ion-row>
-<ion-col>
-  <ion-item>
-    <ion-label>Size</ion-label>
-    <ion-select  cancelText="Nah" okText="Okay!">
-      <ion-select-option value="sm">Small</ion-select-option>
-      <ion-select-option value="md">Medium</ion-select-option>
-      <ion-select-option value="xl">Large</ion-select-option>
-    </ion-select>
-  </ion-item>
-</ion-col>
-<ion-row>
-  <ion-col>
-    <ion-input type="number" value="1"></ion-input>
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col>
-    <ion-button color="primary" (click)="orderDrink()">Order</ion-button>
-  </ion-col>
-</ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Areas</ion-label>
+          <ion-select [(ngModel)]="selectedAreas" multiple="true" cancelText="Nah" okText="Okay!">
+            <ion-select-option *ngFor="let area of areas" value="{{area.id}}">{{area.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Allergies</ion-label>
+          <ion-select [(ngModel)]="selectedAllergies" multiple="true" cancelText="Nah" okText="Okay!">
+            <ion-select-option *ngFor="let allergy of allergies" value="{{allergy.id}}">{{allergy.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Size</ion-label>
+          <ion-select [(ngModel)]="selectedSize" cancelText="Nah" okText="Okay!">
+            <ion-select-option value="sm">Small</ion-select-option>
+            <ion-select-option value="md">Medium</ion-select-option>
+            <ion-select-option value="xl">Large</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input [(ngModel)]="selectedAmount" type="number" value="1">Amount</ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" (click)="orderDrink()">Add to cart</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

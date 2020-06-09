@@ -7,24 +7,24 @@ import java.io.Serializable;
 @Embeddable
 public class OrderDrinkKey implements Serializable {
     @Column(name = "order_id")
-    private Long orderId;
+    private long orderId;
 
     @Column(name = "drink_id")
-    private Long drinkId;
+    private long drinkId;
 
-    public Long getOrderId() {
+    public long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 
-    public Long getDrinkId() {
+    public long getDrinkId() {
         return drinkId;
     }
 
-    public void setDrinkId(Long drinkId) {
+    public void setDrinkId(long drinkId) {
         this.drinkId = drinkId;
     }
 

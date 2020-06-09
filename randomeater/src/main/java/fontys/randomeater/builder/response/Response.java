@@ -1,12 +1,14 @@
 package fontys.randomeater.builder.response;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.List;
 
 public class Response<T> {
 
     private int amount;
     private String message;
-
+    private HttpStatus status;
     private List<T> result;
 
     public int getAmount() {
@@ -16,6 +18,14 @@ public class Response<T> {
     public Response<T> setAmount(int amount) {
         this.amount = amount;
         return this;
+    }
+
+    public HttpStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(HttpStatus status) {
+        this.status = status;
     }
 
     public String getMessage() {

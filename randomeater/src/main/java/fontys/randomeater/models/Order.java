@@ -1,11 +1,8 @@
 package fontys.randomeater.models;
 
-import fontys.randomeater.models.linktables.OrderDrink;
-import fontys.randomeater.models.linktables.OrderFood;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "orders")

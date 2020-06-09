@@ -3,6 +3,7 @@ package fontys.randomeater.controllers;
 import fontys.randomeater.builder.response.Response;
 import fontys.randomeater.models.BaseEntity;
 import fontys.randomeater.services.CRUDService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,23 +18,23 @@ public class CRUDController<T extends BaseEntity> extends ControllerBase<T> {
     }
 
     @GetMapping("/")
-    public Response getAll() {
-        List result = this.getAllInternal();
-        return responseDirector.getSuccessResponse(result.size(), result);
+    public Response<?> getAll() {
+        List<?> result = this.getAllInternal();
+        return responseDirector.getSuccessResponse(result.size(), result, HttpStatus.OK);
     }
 
-    private List getAllInternal() {
+    private List<?> getAllInternal() {
         return getListFromIterator(this.service.findAll().iterator());
     }
 
     @GetMapping("/{id}")
-    public Response getById(@PathVariable Long id) {
+    public Response<?> getById(@PathVariable Long id) {
         T result = this.getByIdInternal(id);
 
         if (result == null) {
-            return responseDirector.getFailResponse(String.format("No object found with ID : %d", id));
+            return responseDirector.getFailResponse(String.format("No object found with ID : %d", id), HttpStatus.BAD_REQUEST);
         } else {
-            return responseDirector.getSuccessResponse(1, result);
+            return responseDirector.getSuccessResponse(1, result, HttpStatus.OK);
         }
     }
 
@@ -42,9 +43,9 @@ public class CRUDController<T extends BaseEntity> extends ControllerBase<T> {
     }
 
     @PostMapping("/")
-    public Response create(@RequestBody T object) {
+    public Response<?> create(@RequestBody T object) {
         T result = this.createInternal(object);
-        return responseDirector.getSuccessResponse(1, result);
+        return responseDirector.getSuccessResponse(1, result, HttpStatus.OK);
     }
 
     protected T createInternal(T object) {
@@ -52,12 +53,12 @@ public class CRUDController<T extends BaseEntity> extends ControllerBase<T> {
     }
 
     @PutMapping("/{id}")
-    public Response update(@PathVariable Long id, @RequestBody T object) {
+    public Response<?> update(@PathVariable Long id, @RequestBody T object) {
         if (object.getId() == id) {
             T result = this.updateInternal(object);
-            return responseDirector.getSuccessResponse(1, result);
+            return responseDirector.getSuccessResponse(1, result, HttpStatus.OK);
         } else {
-            return responseDirector.getFailResponse("Path id and object id do not match!");
+            return responseDirector.getFailResponse("Path id and object id do not match!", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -66,9 +67,9 @@ public class CRUDController<T extends BaseEntity> extends ControllerBase<T> {
     }
 
     @DeleteMapping("/{id}")
-    public Response deleteById(@PathVariable Long id) {
+    public Response<?> deleteById(@PathVariable Long id) {
         this.deleteByIdInternal(id);
-        return responseDirector.getSuccessResponse(1, null);
+        return responseDirector.getSuccessResponse(1, null, HttpStatus.OK);
     }
 
     protected void deleteByIdInternal(Long id) {

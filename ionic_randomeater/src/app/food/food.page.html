@@ -8,5 +8,53 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="5">
+        <ion-button (click)="randomize()" color="danger">Randomize</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Areas</ion-label>
+          <ion-select [(ngModel)]="selectedAreas" multiple="true" cancelText="Nah" okText="Okay!">
+            <ion-select-option *ngFor="let area of areas" value="{{area.id}}">{{area.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Allergies</ion-label>
+          <ion-select [(ngModel)]="selectedAllergies" multiple="true" cancelText="Nah" okText="Okay!">
+            <ion-select-option *ngFor="let allergy of allergies" value="{{allergy.id}}">{{allergy.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Size</ion-label>
+          <ion-select [(ngModel)]="selectedSize" cancelText="Nah" okText="Okay!">
+            <ion-select-option value="sm">Small</ion-select-option>
+            <ion-select-option value="md">Medium</ion-select-option>
+            <ion-select-option value="xl">Large</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input [(ngModel)]="selectedAmount" type="number" value="1">Amount</ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" (click)="orderFood()">Add to cart</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

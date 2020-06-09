@@ -20,7 +20,7 @@ export class AllergyService extends ServiceBase {
 
   getAllergyById(id : number) : Observable<Allergy> {
     return this.loadFromCache(
-      `allergys[${id}]`,
+      `allergies[${id}]`,
       this.http.get(`${this.baseUrl}allergies/${id}`)
         .pipe(map(result => result["result"][0]))
     );

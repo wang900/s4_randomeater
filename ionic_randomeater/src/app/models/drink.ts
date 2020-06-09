@@ -1,6 +1,7 @@
 export class Drink {
-    areas: string[]
+    areas: number[]
     size: number
-    allergies: string[]
+    allergies: number[]
     amount: number
+    price: number
 }

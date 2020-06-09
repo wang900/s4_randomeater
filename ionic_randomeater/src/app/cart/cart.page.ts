@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../services/cart.service';
+import { Drink } from '../models/drink';
+import { Food } from '../models/food';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -6,10 +10,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
+  private drinkList: Drink[] = [];
+  private foodList: Food[] = [];
+  constructor(private cartService: CartService,
+    private router: Router) {
+  }
 
-  constructor() { }
+  checkOut() {
+    this.router.navigateByUrl("check-out")
+  }
 
   ngOnInit() {
+    this.drinkList = this.cartService.getDrinks();
+    this.foodList = this.cartService.getFood();
   }
 
 }

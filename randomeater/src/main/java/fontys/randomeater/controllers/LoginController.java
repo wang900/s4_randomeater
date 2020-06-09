@@ -22,7 +22,7 @@ public class LoginController extends ControllerBase<Account> {
         ResponseEntity<?> response = new ResponseEntity<>("Vul alle inloggegevens in", HttpStatus.BAD_REQUEST);
         if(!account.getEmail().trim().equals("") && !account.getPassword().equals("")) {
             response = new ResponseEntity<>("De gegeven inloggegevens zijn incorrect", HttpStatus.BAD_REQUEST);
-            Account result = accountService.login(account.getEmail());
+            Account result = accountService.login(account.getEmail(), account.getPassword());
             if(result != null) {
                 response = new ResponseEntity<>(result, HttpStatus.OK);
             }

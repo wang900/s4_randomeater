@@ -1,0 +1,6 @@
+projectKey=RandomEater
+serverUrl=http://localhost:9000
+serverVersion=7.9.1.27448
+dashboardUrl=http://localhost:9000/dashboard?id=RandomEater
+ceTaskId=AXJQAE6eflCYiWhRX8zo
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXJQAE6eflCYiWhRX8zo

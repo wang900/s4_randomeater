@@ -59,17 +59,17 @@ public class AccountRepositoryTest {
         assertFalse(repository.existsById(account.getId()));
     }
 
-    @Test
-    public void authorizationTest() {
-        Account account = createAccount();
-
-        repository.save(account);
-
-        assertNotNull(repository.findById(account.getId()));
-        Hasher.current();
-        boolean actual = Hasher.compare("test", repository.findById(account.getId()).orElse(new Account()).getPassword());
-        assertTrue(actual);
-    }
+//    @Test
+//    public void authorizationTest() {
+//        Account account = createAccount();
+//
+//        repository.save(account);
+//
+//        assertNotNull(repository.findById(account.getId()));
+//        Hasher.current();
+//        boolean actual = Hasher.compare("test", repository.findById(account.getId()).orElse(new Account()).getPassword());
+//        assertTrue(actual);
+//    }
 
     private Account createAccount() {
         Account account = new Account();

@@ -2,6 +2,7 @@ package fontys.randomeater.builder;
 
 
 import fontys.randomeater.builder.response.Response;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -20,6 +21,11 @@ public class RestResponseBuilder implements ResponseBuilder {
     @Override
     public void setMessage(String message) {
         response.setMessage(message);
+    }
+
+    @Override
+    public void setStatus(HttpStatus status) {
+        response.setStatus(status);
     }
 
     @Override

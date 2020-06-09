@@ -4,9 +4,17 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Login</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-item>
+  <ion-label>Email</ion-label>
+  <ion-input *ngModel="email"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Password</ion-label>
+  <ion-input *ngModel="password"></ion-input>
+</ion-item>
 </ion-content>

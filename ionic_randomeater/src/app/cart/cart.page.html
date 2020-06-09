@@ -5,5 +5,50 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let food of foodList">
+        <ion-card>
+          <img src="assets/random_food.png" alt="random_food" width="280" height="280"/>
+          <ion-card-header>
+            <ion-card-subtitle>Random</ion-card-subtitle>
+            <ion-card-title>Food</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Area(s): <strong *ngFor="let area of food.areas">{{area}}</strong> <br>
+            Size: <strong>{{food.size}}</strong> <br>
+            Allergies: <strong *ngFor="let allergy of food.allergies">{{allergy}}</strong> <br>
+            Amount: <strong>{{food.amount}}</strong>
+            Price: <strong>{{drink.price}}</strong>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let drink of drinkList">
+        <ion-card>
+          <img src="assets/random_drink.png" alt="random_drink" width="280" height="280"/>
+          <ion-card-header>
+            <ion-card-subtitle>Random</ion-card-subtitle>
+            <ion-card-title>Drink</ion-card-title>
+          </ion-card-header>
+          
+          <ion-card-content>
+            Area(s): <strong *ngFor="let area of drink.areas"><span *ngIf="area" (onCreate)="yourMethod(area)"></span></strong> <br>
+            Size: <strong>{{drink.size}}</strong> <br>
+            Allergies: <strong *ngFor="let allergy of drink.allergies">{{allergy.name}}</strong> <br>
+            Amount: <strong>{{drink.amount}}</strong> <br>
+            Price: <strong>{{drink.price}}</strong>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col >
+      <ion-button (click)="checkOut()" color="primary">
+        Check out
+      </ion-button>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

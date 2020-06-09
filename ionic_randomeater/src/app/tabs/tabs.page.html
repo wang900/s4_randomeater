@@ -1,25 +1,31 @@
 <ion-tabs>
 
   <ion-tab-bar d-none d-lg-block slot="top">
-    <ion-tab-button tab="home">
+    <ion-tab-button (click)="toHome()" tab='home'>
       <ion-icon name="home-outline"></ion-icon>
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="orders">
+    <ion-tab-button (click)="toOrder()" tab='orders'>
       <ion-icon name="fast-food-outline"></ion-icon>
       <ion-label>Order</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="login">
+    <ion-tab-button (click)="toLogin()" tab='login'>
       <ion-icon name="log-in-outline"></ion-icon>
       <ion-label>Login</ion-label>
     </ion-tab-button>
-  </ion-tab-bar>
+
+  <ion-tab-button (click)="toCart()" tab='cart'>
+    <ion-icon name="cart-outline"></ion-icon>
+    <ion-badge name="badge" color="secondary">{{amount}}</ion-badge>
+    <ion-label>Cart</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
 </ion-tabs>
-  <!-- fab placed to the (vertical) center and end -->
-  <ion-fab vertical="center" horizontal="end" slot="fixed">
-    <ion-fab-button>
+  <!-- fab placed to the (vertical) center and end
+  <ion-fab vertical="top" horizontal="end" slot="fixed" >
+    <ion-fab-button (click)="toCart()" matBadge="11" matBadgeSize="large" matBadgePosition="below" matBadgeColor="accent">
       <ion-icon name="cart-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->

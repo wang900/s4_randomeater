@@ -17,10 +17,10 @@ public class AccountService extends CRUDService<Account, Long> {
         this.repository = repository;
     }
 
-    public Account login(String email) {
+    public Account login(String email, String password) {
         Account a = repository.findByEmail(email);
         if(a != null) {
-            if(!Hasher.compare(a.getPassword(), a.getPassword())) {
+            if(!Hasher.compare(password, a.getPassword())) {
                 a = null;
             }
         }

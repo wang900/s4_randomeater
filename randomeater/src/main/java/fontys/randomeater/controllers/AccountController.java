@@ -1,5 +1,6 @@
 package fontys.randomeater.controllers;
 
+import fontys.randomeater.builder.response.Response;
 import fontys.randomeater.models.Account;
 import fontys.randomeater.services.AccountService;
 import org.springframework.http.HttpStatus;
@@ -28,5 +29,16 @@ public class AccountController extends CRUDController<Account> {
             response = new ResponseEntity<Account>(result, HttpStatus.OK);
         }
         return response;
+    }
+
+    @PostMapping("/login")
+    public Response<?> login(@RequestBody Account account) {
+        Account a = accountService.login(account.getEmail(), account.getPassword());
+        if(a == null) {
+            return responseDirector.getFailResponse("The given ", HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return responseDirector.getSuccessResponse(1, a, HttpStatus.OK);
+        }
     }
 }

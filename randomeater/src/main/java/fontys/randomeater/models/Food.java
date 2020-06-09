@@ -1,9 +1,7 @@
 package fontys.randomeater.models;
 
-import fontys.randomeater.models.linktables.OrderFood;
-
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "food")
@@ -12,14 +10,16 @@ public class Food extends BaseEntity {
     @Column(name = "name",  length = 50, nullable = false)
     private String name;
 
-    @Column(name = "area", length = 50, nullable = false)
-    private String area;
+    @OneToOne
+    @JoinColumn(name="area_id", nullable=false)
+    private Area area;
 
     @Column(name = "spicy", nullable = false)
     private boolean spicy;
 
-    @Column(name = "allergy")
-    private String allergy;
+    @ManyToMany
+    @JoinColumn(name = "food_id")
+    private List<Allergy> allergies;
 
     public String getName() {
         return name;
@@ -29,11 +29,11 @@ public class Food extends BaseEntity {
         this.name = name;
     }
 
-    public String getArea() {
+    public Area getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Area area) {
         this.area = area;
     }
 
@@ -45,11 +45,11 @@ public class Food extends BaseEntity {
         this.spicy = spicy;
     }
 
-    public String getAllergy() {
-        return allergy;
+    public List<Allergy> getAllergies() {
+        return allergies;
     }
 
-    public void setAllergy(String allergy) {
-        this.allergy = allergy;
+    public void setAllergies(List<Allergy> allergies) {
+        this.allergies = allergies;
     }
 }
